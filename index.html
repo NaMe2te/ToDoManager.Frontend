@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>ToDoManager</title>
+</head>
+<body>
+    <header class="header">
+        <a class="burger__button">
+            <span></span>
+        </a>
+        <div class="container">
+            <div class="header__inner">
+                <a class="header__logo" href="#">ToDoManager</a>
+                <nav>
+                    <a class="header__nav" href="#">About Us</a>
+                    <a class="header__nav" href="#">Contact</a>
+                    <button class="header__profile__button open__auth">LogIn</button>
+                </nav>
+            </div>
+        </div>
+        <div class="auth-bg auth-bg__nonactive">
+            <div class="auth">
+                <img src="assets/imgs/icons8-close.svg" alt="icon" class="close__auth">
+                <form id="auth__form">
+                    <label for="auth__username"></label>
+                    <input type="text" id="auth__username" maxlength="50" name="username" placeholder="Username">
+
+                    <label for="auth__password"></label>
+                    <input type="password" id="auth__password" name="password" placeholder="Password">
+                    <button class="auth__button auth__button__login">LogIn</button>
+                </form>
+                <div class="sign-up__area">
+                    <span class="sign__up__question">Don't have an account?</span>
+                    <a class="sign__up" href="#">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="burger">
+            <div class="burger__menu">
+                <div class="burger__menu__title"></div>
+                <nav class="burger__list">
+                </nav>
+                <div class="additem__area">
+                    <div class="additem__inner add__group__inner" title="Create group">
+                        <button id="addgroup__plus__button" class="plus__button addgroup__plus" form="addgroup__form__inner" type="submit"></button>
+                        <form id="addgroup__form__inner">
+                            <label for="group_name"></label>
+                            <input class="form__input" type="text" id="group_name" maxlength="50" name="group_name" placeholder="Name">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main__inner">
+                <h2 class="main__inner__title"></h2>
+                <div class="main__content">
+                    <div class="main__task__area">
+                        <div id="" class="task">
+                            <button class="task__button"></button>
+                            <div class="task__inner">W</div>
+                        </div>
+                    </div>
+                    <div class="additem__area">
+                        <div class="additem__inner add__task__inner">
+                            <button id="addtask__plus__button" class="plus__button addtask_plus" form="addtask__form__inner" title="Create task"></button>
+                            <form id="addtask__form__inner">
+                                <label for="task_name"></label>
+                                <input class="form__input form__input__addtask" type="text" id="task_name" maxlength="50" name="task_name" placeholder="Name">
+
+                                <label for="text"></label>
+                                <input class="form__input form__input__addtask" type="text" id="text" name="text" placeholder="Text">
+
+                                <label for="deadline"></label>
+                                <input class="form__input form__input__addtask" type="datetime-local" id="deadline" name="deadline" title="optional">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script defer type="module" src="script.js"></script>
+</body>
+</html>
