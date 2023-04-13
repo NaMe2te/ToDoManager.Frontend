@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>ToDoManager</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
                 <nav>
                     <a class="header__nav" href="#">About Us</a>
                     <a class="header__nav" href="#">Contact</a>
-                    <button class="header__profile__button open__auth">LogIn</button>
+                    <button class="header__profile__button open__auth"></button>
                 </nav>
             </div>
         </div>
@@ -44,9 +45,23 @@
     <main class="main">
         <div class="burger">
             <div class="burger__menu">
+                <div class="right__click__wrapper group__right__click">
+                    <ul class="right__click__menu">
+                        <li class="right__click__item rename__item">
+                            <i class="uil uil-edit"></i>
+                            <span>Rename</span>
+                        </li>
+                        <li class="right__click__item delete__item">
+                            <i class="uil uil-trash-alt"></i>
+                            <span>Delete</span>
+                        </li>
+                    </ul>
+                </div>
                 <div class="burger__menu__title"></div>
-                <nav class="burger__list">
-                </nav>
+                <div class="burger__scroll">
+                    <div class="burger__list">
+                    </div>
+                </div>
                 <div class="additem__area">
                     <div class="additem__inner add__group__inner" title="Create group">
                         <button id="addgroup__plus__button" class="plus__button addgroup__plus" form="addgroup__form__inner" type="submit"></button>
@@ -62,10 +77,28 @@
             <div class="main__inner">
                 <h2 class="main__inner__title"></h2>
                 <div class="main__content">
-                    <div class="main__task__area">
-                        <div id="" class="task">
-                            <button class="task__button"></button>
-                            <div class="task__inner">W</div>
+                    <div class="right__click__wrapper task__right__click">
+                        <ul class="right__click__menu">
+                            <li class="right__click__item add__deadline__to__item">
+                                <i class="uil uil-calendar-alt"></i>
+                                <span>Add deadline</span>
+                            </li>
+                            <li class="right__click__item rename__item">
+                                <i class="uil uil-edit"></i>
+                                <span>Rename</span>
+                            </li>
+                            <li class="right__click__item edit__item__text">
+                                <i class="uil uil-text-size"></i>
+                                <span>Edit text</span>
+                            </li>
+                            <li class="right__click__item delete__item">
+                                <i class="uil uil-trash-alt"></i>
+                                <span>Delete</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="task__scroll">
+                        <div class="main__task__area">
                         </div>
                     </div>
                     <div class="additem__area">

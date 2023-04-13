@@ -14,10 +14,10 @@ export function makeRegistration(usernameAndPassword) {
             const tok = JSON.parse(token);
             localStorage.setItem('token', tok['token']);
             makePageAfterLogin();
+            closeAuth();
         })
         .catch((statusCode, errorText) => {
-            if (statusCode === 409)
-                console.log(errorText);
+            console.log(statusCode, errorText);
         });
 }
 
@@ -31,24 +31,6 @@ export function enter(usernameAndPassword) {
             closeAuth();
         })
         .catch((statusCode, errorText) => {
-            if (statusCode === 401)
-                console.log(errorText);
+            console.log(statusCode, errorText);
         });
-}
-
-function loadGroups() {
-
-}
-
-export function getAccountId() {
-    const token = localStorage.getItem('token');
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    const user = JSON.parse(jsonPayload);
-    console.log(user);
-    console.log(user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid']);
 }
