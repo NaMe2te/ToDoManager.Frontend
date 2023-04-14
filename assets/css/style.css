@@ -34,6 +34,12 @@ body {
     margin: 0 auto;
 }
 
+/* Errors */
+
+.input__error {
+    border-color: red !important;
+}
+
 /* Header */
 
 .header {
@@ -459,6 +465,12 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.auth__error {
+    font-size: var(--text-font-size-sm);
+    color: red;
+    text-align: center;
+}
+
 .close__auth {
     position: absolute;
     top: 20px;
@@ -497,18 +509,6 @@ body {
     color: white;
 }
 
-.auth__button__login {
-
-}
-
-.auth__button__register {
-
-}
-
-.sign__up__question {
-
-}
-
 .sign-up__area {
     font-size: var(--text-font-size-sm);
     color: var(--main-bg-color);
@@ -525,12 +525,6 @@ body {
 .sign__up:hover {
     transition: color 1s linear;
     text-decoration: underline;
-}
-
-/* Errors */
-
-.input__error {
-    border-color: red;
 }
 
 /* form */

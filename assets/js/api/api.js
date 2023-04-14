@@ -52,7 +52,7 @@ function postRequest(url, date) {
                 if (xhr.status === 200)
                     resolve(xhr.responseText);
                 else
-                    reject(xhr.status, new Error(xhr.responseText));
+                    reject(xhr.status, xhr.responseText);
             }
         }
     });
@@ -90,7 +90,7 @@ function putRequest(url, date) {
                 if (xhr.status === 200)
                     resolve(xhr.responseText);
                 else
-                    reject(xhr.status, new Error(xhr.responseText));
+                    reject(xhr.status, xhr.responseText);
             }
         }
     });

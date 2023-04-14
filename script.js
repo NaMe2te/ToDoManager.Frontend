@@ -100,20 +100,32 @@ authButton.addEventListener('click', loginOrSignup);
 const signUpOrLoginButton = document.querySelector('.sign__up');
 signUpOrLoginButton.addEventListener('click', (e) => {
     e.preventDefault();
-    let question = document.querySelector('.sign__up__question');
-    if (authButton.classList.contains('auth__button__login')) {
-        authButton.classList.remove('auth__button__login');
-        authButton.classList.add('auth__button__register');
+    let question = document.querySelector('.js-sign-up-question');
+    if (authButton.classList.contains('js-auth-button-login')) {
+        authButton.classList.remove('js-auth-button-login');
+        authButton.classList.add('js-auth-button-register');
         signUpOrLoginButton.textContent = 'Log In';
         authButton.textContent = 'Sign up';
         question.textContent = 'Have an account already?';
     } else {
-        authButton.classList.remove('auth__button__register');
-        authButton.classList.add('auth__button__login');
+        authButton.classList.remove('js-auth-button-register');
+        authButton.classList.add('js-auth-button-login');
         signUpOrLoginButton.textContent = 'Sign up';
         authButton.textContent = 'Log In';
         question.textContent = 'Don\'t have an account?';
     }
+
+    if (document.querySelector('.auth__error')) {
+        document.querySelector('.auth__error').remove();
+    }
+
+    const authForm = document.querySelector('#auth__form'),
+        inputs = authForm.querySelectorAll('input');
+    inputs.forEach(input => {
+        if (input.classList.contains('input__error')) {
+            input.classList.remove('input__error');
+        }
+    });
 });
 
 const burgerMenu = document.querySelector('.burger__menu');
@@ -190,9 +202,9 @@ window.addEventListener('click', (e) => {
 document.querySelector('.group__right__click').querySelectorAll('li')
     .forEach(li => {
         li.addEventListener('click', (e) => {
-            if (li.classList.contains('rename__item')) {
+            if (li.classList.contains('js-rename-item')) {
                 renameGroup(groupId);
-            } else if (li.classList.contains('delete__item')) {
+            } else if (li.classList.contains('js-delete-item')) {
                 removeGroup({
                     id: groupId
                 });
@@ -203,13 +215,13 @@ document.querySelector('.group__right__click').querySelectorAll('li')
 document.querySelector('.task__right__click').querySelectorAll('li')
     .forEach(li => {
         li.addEventListener('click', (e) => {
-            if (li.classList.contains('add__deadline__to__item')) {
+            if (li.classList.contains('js-add-deadline-to-item')) {
                 addDeadline(taskId);
-            } else if (li.classList.contains('rename__item')) {
+            } else if (li.classList.contains('js-rename-item')) {
                 renameTask(taskId);
-            } else if (li.classList.contains('edit__item__text')) {
+            } else if (li.classList.contains('js-edit-item-text')) {
                 editTaskText(taskId);
-            } else if (li.classList.contains('delete__item')) {
+            } else if (li.classList.contains('js-delete-item')) {
                 removeTask({
                     "id": taskId
                 });
@@ -219,23 +231,45 @@ document.querySelector('.task__right__click').querySelectorAll('li')
 
 
 const headerLoginButton = document.querySelector('.header__profile__button');
+const authForm = document.querySelector('#auth__form'),
+    inputs = authForm.querySelectorAll('input');
+
+inputs.forEach(input => {
+    input.addEventListener('focus', (e) => {
+        e.preventDefault();
+        if (input.classList.contains('input__error'))
+            input.classList.remove('input__error');
+    });
+});
+
+
 function loginOrSignup(e) {
     e.preventDefault();
-    let authForm = document.querySelector('#auth__form');
-    let formData = new FormData(authForm);
-    let authUsername = formData.get('username');
-    let authPassword = formData.get('password');
-    if ((!authUsername || authUsername.trim() === "") || (!authPassword || authPassword.trim() === "")) {
-        const inputs = authForm.querySelectorAll('input');
-        inputs.forEach((input) => {
-            input.classList.add('input__error');
-            console.log(input.textContent);
+    const formData = new FormData(authForm),
+        emptyInputs = Array.from(inputs).filter(input => input.value.trim() === ""),
+        authUsername = formData.get('username'),
+        authPassword = formData.get('password'),
+        regex = /^[a-zA-Z\d]+$/;
+
+    if (emptyInputs.length !== 0) {
+        inputs.forEach(input => {
+            if (input.value === '') {
+                input.classList.add('input__error');
+            }
         });
-        authForm.reset();
+
         return;
     }
 
-    if (authButton.classList.contains('auth__button__login')) {
+    if (!validateUsername(authUsername)) {
+        return;
+    }
+
+    if (!validatePassword(authPassword)) {
+        return;
+    }
+
+    if (authButton.classList.contains('js-auth-button-login')) {
         enter({
             username: authUsername,
             password: authPassword
@@ -246,7 +280,50 @@ function loginOrSignup(e) {
             password: authPassword
         });
     }
+
     authForm.reset();
+
+    function validateUsername(username) {
+        if (!regex.test(username)) {
+            inputs[0].classList.add('input__error');
+            addErrorText("Username cannot contain spaces and special characters");
+            return false;
+        }
+        else if (username.length < 7) {
+            inputs[0].classList.add('input__error');
+            addErrorText("Username must to be more then 6 symbols");
+            return false;
+        }
+
+        return true;
+    }
+
+    function validatePassword(password) {
+        if (!regex.test(password)) {
+            inputs[1].classList.add('input__error');
+            addErrorText("Password cannot contain spaces and special characters");
+            return false;
+        }
+        if (password.length < 8) {
+            inputs[1].classList.add('input__error');
+            addErrorText("Password must to be more then 7 symbols");
+            return false;
+        }
+
+        return true;
+    }
+}
+
+export function addErrorText(errorText) {
+    if (!document.querySelector('.auth__error')) {
+        const form = document.querySelector('#auth__form'),
+            newElement = document.createElement('div');
+        newElement.classList.add('auth__error');
+        newElement.textContent = errorText;
+        form.parentNode.insertBefore(newElement, form.nextElementSibling);
+    } else {
+        document.querySelector('.auth__error').textContent = errorText;
+    }
 }
 
 
