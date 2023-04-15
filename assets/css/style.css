@@ -4,17 +4,22 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     line-height: 1.6;
-    background-color: var(--main-bg-color);
+}
+
+button, body {
+    font-family: 'Sofia Sans Condensed', sans-serif;
 }
 
 :root {
-    --font-family-roboto: 'Roboto', sans-serif;
+    --text-task-color: #e4e4e4;
+    --scrollbar-color: #888;
+    --scrollbar-thumb-color: #555;
     --header-bg-color: #2a2a2a;
     --main-bg-color: #1e1e1e;
-    --text-color: #ffd457;
+    --auth-bg-colot: #F5DEB3;
+    --header-text-color: #ffd457;
     --text-font-size-xlg: 30px;
     --text-font-size-lg: 20px;
     --text-font-size-md: 17px;
@@ -48,7 +53,7 @@ body {
     background-color: var(--header-bg-color);
     display: flex;
     align-items: center;
-    color: var(--text-color);
+    color: var(--header-text-color);
 }
 
 .header__inner {
@@ -58,7 +63,7 @@ body {
 }
 
 .header__logo {
-    color: var(--text-color);
+    color: var(--header-text-color);
     font-size: var(--text-font-size-xlg);
     display: inline-block;
     text-decoration: none;
@@ -69,17 +74,16 @@ body {
     display: inline-block;
     text-decoration: none;
     margin: 0 20px;
-    color: var(--text-color);
+    color: var(--header-text-color);
 }
 .header__nav:hover {
     transition: color 0.3s linear;
-    color: white;
+    color: var(--text-task-color);
 }
 
 .header__profile__button {
-    font-family: var(--font-family-roboto);
-    font-size: var(--text-font-size-md);
-    color: var(--text-color);
+    font-size: var(--text-font-size-lg);
+    color: var(--header-text-color);
     border-radius: 30px 30px 30px 30px;
     width: 180px;
     height: 43px;
@@ -88,6 +92,7 @@ body {
 .header__profile__button:hover {
     transition: 1s ease-in-out;
     background: var(--main-bg-color);
+    color: var(--text-task-color);
 }
 
 /* Main */
@@ -95,7 +100,7 @@ body {
 .main {
     height: var(--main-height);
     background-color: var(--main-bg-color);
-    color: var(--text-color);
+    color: var(--header-text-color);
 }
 
 .main__inner {
@@ -126,7 +131,7 @@ body {
 }
 
 .task__wrapper {
-    font-size: var(--text-font-size-sm);
+    font-size: var(--text-font-size-md);
     width: var(--content-item-width);
     height: 70px;
     border: 1px;
@@ -159,13 +164,8 @@ body {
     justify-content: center;
 }
 
-.task__checkbox {
-    background-color: white;
-    border-radius: 50%;
-}
-
 .task__center__wrapper {
-    color: #e4e4e4;
+    color: var(--text-task-color);
     width: 75%;
     height: 100%;
     margin-left: 15px;
@@ -195,7 +195,7 @@ body {
 }
 
 .add__task__inner {
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--header-text-color);
     width: var(--content-item-width);
 }
 
@@ -232,7 +232,7 @@ body {
 
 .addtask_plus::before,
 .addtask_plus::after {
-    background-color: var(--text-color);
+    background-color: var(--header-text-color);
 }
 
 .form__input {
@@ -307,7 +307,7 @@ body {
     border-radius: 0 5px 5px 0;
     height: 100%;
     z-index: 1;
-    background-color: #ffd457;
+    background-color: var(--header-text-color);
     transition: 0.5s;
     transform: translateX(-80%);
 }
@@ -371,12 +371,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: var(--scrollbar-color);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+    background-color: var(--scrollbar-thumb-color);
 }
 
 .group {
@@ -459,7 +459,7 @@ body {
     top: 50%;
     left: 50%;
     width: 450px;
-    background-color: #F5DEB3;
+    background-color: var(--auth-bg-colot);
     padding: 50px 20px 50px 20px;
     border-radius: 10px;
     transform: translate(-50%, -50%);

@@ -12,11 +12,10 @@ const authForm = document.querySelector('#auth__form'),
 export function makeRegistration(usernameAndPassword) {
     register(registrationUrl, usernameAndPassword)
         .then((token) => {
-            console.log(token);
             const tok = JSON.parse(token);
             localStorage.setItem('token', tok['token']);
-            makePageAfterLogin();
             closeAuth();
+            makePageAfterLogin();
         })
         .catch((statusCode, errorText) => {
             if (statusCode === 409) {
@@ -29,11 +28,10 @@ export function makeRegistration(usernameAndPassword) {
 export function enter(usernameAndPassword) {
     login(loginUrl, usernameAndPassword)
         .then((token) => {
-            console.log(token);
             const tok = JSON.parse(token);
             localStorage.setItem('token', tok['token']);
-            makePageAfterLogin();
             closeAuth();
+            makePageAfterLogin();
         })
         .catch((statusCode, errorText) => {
             if (statusCode === 401) {

@@ -115,9 +115,7 @@ signUpOrLoginButton.addEventListener('click', (e) => {
         question.textContent = 'Don\'t have an account?';
     }
 
-    if (document.querySelector('.auth__error')) {
-        document.querySelector('.auth__error').remove();
-    }
+    removeAuthError();
 
     const authForm = document.querySelector('#auth__form'),
         inputs = authForm.querySelectorAll('input');
@@ -242,6 +240,11 @@ inputs.forEach(input => {
     });
 });
 
+function removeAuthError() {
+    if (document.querySelector('.auth__error')) {
+        document.querySelector('.auth__error').remove();
+    }
+}
 
 function loginOrSignup(e) {
     e.preventDefault();
@@ -340,6 +343,7 @@ function openAuth() {
 function makePageAfterLogout() {
     removeGroupsFromListOnPage();
     removeTasksFromListOnPage();
+    removeAuthError();
     headerLoginButton.textContent = 'LogIn';
     headerLoginButton.removeEventListener('click', makePageAfterLogout);
     headerLoginButton.addEventListener('click', openAuth);
